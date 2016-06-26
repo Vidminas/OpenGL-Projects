@@ -3,20 +3,20 @@
 #include <GLFW/glfw3.h>
 #include "geometry2D.hpp"
 
-Vector::Vector()
-    : x (0.f), y (0.f), z (0.f) {}
+Vector::Vector ()
+    : x(0.f), y(0.f), z(0.f) {}
 
 Vector::Vector (float x, float y, float z)
-    : x (x), y (y), z (z) {}
+    : x(x), y(y), z(z) {}
 
-void Point::operator= (const Point& rhs)
+void Point::operator=(const Point & rhs)
 {
     x = rhs.x;
     y = rhs.y;
     z = rhs.z;
 }
 
-Vector Vector::operator+ (const Vector& rhs)
+Vector Vector::operator+(const Vector & rhs)
 {
     Vector vector;
     vector.x = x + rhs.x;
@@ -26,7 +26,7 @@ Vector Vector::operator+ (const Vector& rhs)
     return vector;
 }
 
-Vector Vector::operator- (const Vector& rhs)
+Vector Vector::operator-(const Vector & rhs)
 {
     Vector vector;
     vector.x = x - rhs.x;
@@ -36,16 +36,16 @@ Vector Vector::operator- (const Vector& rhs)
     return vector;
 }
 
-Point::Point()
-    : x (0.f), y (0.f), z (0.f), r (1.f), g (0.f), b (0.f) {}
+Point::Point ()
+    : x(0.f), y(0.f), z(0.f), r(1.f), g(0.f), b(0.f) {}
 
 Point::Point (float x, float y, float z)
-    : x (x), y (y), z (z), r (1.f), g (1.f), b (1.f) {}
+    : x(x), y(y), z(z), r(1.f), g(1.f), b(1.f) {}
 
 Point::Point (float x, float y, float z, float r, float g, float b)
-    : x (x), y (y), z (z), r (r), g (g), b (b) {}
+    : x(x), y(y), z(z), r(r), g(g), b(b) {}
 
-Point Point::operator+ (const Point& rhs)
+Point Point::operator+(const Point & rhs)
 {
     Point point;
     point.x = x + rhs.x;
@@ -55,7 +55,7 @@ Point Point::operator+ (const Point& rhs)
     return point;
 }
 
-Vector Point::operator- (const Point& rhs)
+Vector Point::operator-(const Point & rhs)
 {
     Vector vector;
     vector.x = x - rhs.x;
@@ -65,7 +65,7 @@ Vector Point::operator- (const Point& rhs)
     return vector;
 }
 
-Point Point::operator+ (const Vector& rhs)
+Point Point::operator+(const Vector & rhs)
 {
     Point point;
     point.x = x + rhs.x;
@@ -75,7 +75,7 @@ Point Point::operator+ (const Vector& rhs)
     return point;
 }
 
-Point Point::operator- (const Vector& rhs)
+Point Point::operator-(const Vector & rhs)
 {
     Point point;
     point.x = x - rhs.x;
