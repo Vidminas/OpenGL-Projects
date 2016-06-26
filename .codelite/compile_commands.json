@@ -1,9 +1,0 @@
-[{
-  "directory": "/Users/vidminas/GitHub/GLEngine",
-  "command": "/usr/bin/clang++ -g -O0 -Wall -std=c++0x -I/usr/local/include/ -I. -MG -MP -MT./Debug/geometry2D.cpp.o -MF./Debug/geometry2D.cpp.o.d -MM geometry2D.cpp",
-  "file": "/Users/vidminas/GitHub/GLEngine/geometry2D.cpp"
- }, {
-  "directory": "/Users/vidminas/GitHub/GLEngine",
-  "command": "/usr/bin/clang++ -c /Users/vidminas/GitHub/GLEngine/geometry2D.cpp -g -O0 -Wall -std=c++0x -o ./Debug/geometry2D.cpp.o -I/usr/local/include/ -I.",
-  "file": "/Users/vidminas/GitHub/GLEngine/geometry2D.cpp"
- }]

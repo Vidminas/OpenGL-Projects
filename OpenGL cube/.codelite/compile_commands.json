@@ -1,0 +1,9 @@
+[{
+  "directory": "/Users/vidminas/GitHub/GLCube",
+  "command": "/usr/bin/clang++ -g -O0 -Wall -I/usr/local/include -I. -MG -MP -MT./Debug/main.cpp.o -MF./Debug/main.cpp.o.d -MM main.cpp",
+  "file": "/Users/vidminas/GitHub/GLCube/main.cpp"
+ }, {
+  "directory": "/Users/vidminas/GitHub/GLCube",
+  "command": "/usr/bin/clang++ -c /Users/vidminas/GitHub/GLCube/main.cpp -g -O0 -Wall -o ./Debug/main.cpp.o -I/usr/local/include -I.",
+  "file": "/Users/vidminas/GitHub/GLCube/main.cpp"
+ }]
