@@ -1,22 +1,23 @@
 #include <iostream>
-#include <array>
+#include <cmath>
+#include <vector>
 #include <GLFW/glfw3.h>
 #include "geometry2D.hpp"
 
-Vector::Vector ()
-    : x(0.f), y(0.f), z(0.f) {}
+Vector::Vector()
+    : x (0.f), y (0.f), z (0.f) {}
 
 Vector::Vector (float x, float y, float z)
-    : x(x), y(y), z(z) {}
+    : x (x), y (y), z (z) {}
 
-void Point::operator=(const Point & rhs)
+void Point::operator= (const Point& rhs)
 {
     x = rhs.x;
     y = rhs.y;
     z = rhs.z;
 }
 
-Vector Vector::operator+(const Vector & rhs)
+Vector Vector::operator+ (const Vector& rhs)
 {
     Vector vector;
     vector.x = x + rhs.x;
@@ -26,7 +27,7 @@ Vector Vector::operator+(const Vector & rhs)
     return vector;
 }
 
-Vector Vector::operator-(const Vector & rhs)
+Vector Vector::operator- (const Vector& rhs)
 {
     Vector vector;
     vector.x = x - rhs.x;
@@ -36,16 +37,16 @@ Vector Vector::operator-(const Vector & rhs)
     return vector;
 }
 
-Point::Point ()
-    : x(0.f), y(0.f), z(0.f), r(1.f), g(0.f), b(0.f) {}
+Point::Point()
+    : x (0.f), y (0.f), z (0.f), r (1.f), g (0.f), b (0.f) {}
 
 Point::Point (float x, float y, float z)
-    : x(x), y(y), z(z), r(1.f), g(1.f), b(1.f) {}
+    : x (x), y (y), z (z), r (1.f), g (1.f), b (1.f) {}
 
 Point::Point (float x, float y, float z, float r, float g, float b)
-    : x(x), y(y), z(z), r(r), g(g), b(b) {}
+    : x (x), y (y), z (z), r (r), g (g), b (b) {}
 
-Point Point::operator+(const Point & rhs)
+Point Point::operator+ (const Point& rhs)
 {
     Point point;
     point.x = x + rhs.x;
@@ -55,7 +56,7 @@ Point Point::operator+(const Point & rhs)
     return point;
 }
 
-Vector Point::operator-(const Point & rhs)
+Vector Point::operator- (const Point& rhs)
 {
     Vector vector;
     vector.x = x - rhs.x;
@@ -65,7 +66,7 @@ Vector Point::operator-(const Point & rhs)
     return vector;
 }
 
-Point Point::operator+(const Vector & rhs)
+Point Point::operator+ (const Vector& rhs)
 {
     Point point;
     point.x = x + rhs.x;
@@ -75,7 +76,7 @@ Point Point::operator+(const Vector & rhs)
     return point;
 }
 
-Point Point::operator-(const Vector & rhs)
+Point Point::operator- (const Vector& rhs)
 {
     Point point;
     point.x = x - rhs.x;
@@ -113,4 +114,49 @@ const float Point::getG() const
 const float Point::getB() const
 {
     return b;
+}
+
+BresenhamLine::BresenhamLine (Point a, Point b)
+    : mStart (a)
+    , mEnd (b)
+{
+
+}
+
+std::vector<Point> BresenhamLine::rasterise()
+{
+    std::vector<Point> pointsOnLine;
+    float stepSize (0.5);
+
+    float x (mStart.getX() );
+    float y (mStart.getY() );
+    float dx (mEnd.getX() - x);
+    float dy (mEnd.getY() - y);
+    float sx (copysign (stepSize, mEnd.getX() - x) );
+    float sy (copysign (stepSize, mEnd.getY() - y) );
+
+    float error (0);
+    float gradient (std::abs (dy / dx) * stepSize);
+
+    while ( (x != mEnd.getX() || y != mEnd.getY() ) && x <= 5.f)
+    {
+        pointsOnLine.push_back (Point (x, y, 0,
+                                       1 - (mStart.getR() + (mEnd.getX() - x + mEnd.getY() - y) * (mEnd.getR() - mStart.getR() ) / (dx + dy) ),
+                                       1 - (mStart.getG() + (mEnd.getX() - x + mEnd.getY() - y) * (mEnd.getG() - mStart.getG() ) / (dx + dy) ),
+                                       1 - (mStart.getB() + (mEnd.getX() - x + mEnd.getY() - y) * (mEnd.getB() - mStart.getB() ) / (dx + dy) ) ) );
+
+        std::cout << "Added point at X = " << x << " Y = " << y << " error is " << error << std::endl;
+        x += sx;
+        error += gradient;
+
+        while (error * 2 >= stepSize)
+        {
+            y += sy;
+            error -= stepSize;
+        }
+    }
+
+    pointsOnLine.push_back (mEnd);
+
+    return pointsOnLine;
 }

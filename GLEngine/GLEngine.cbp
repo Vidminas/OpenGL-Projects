@@ -49,7 +49,6 @@
 		<Unit filename="FragmentShader.glsl" />
 		<Unit filename="GLEngine.cpp" />
 		<Unit filename="GLEngine.hpp" />
-		<Unit filename="VBO.hpp" />
 		<Unit filename="VertexShader.glsl" />
 		<Unit filename="geometry2D.cpp" />
 		<Unit filename="geometry2D.hpp" />

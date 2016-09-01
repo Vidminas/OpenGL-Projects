@@ -40,3 +40,14 @@ public:
     const float getG() const;
     const float getB() const;
 };
+
+class BresenhamLine
+{
+private:
+    Point mStart, mEnd;
+
+public:
+    BresenhamLine (Point a, Point b);
+
+    std::vector<Point> rasterise();
+};
